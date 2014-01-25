@@ -1,0 +1,16 @@
+/*Partition code: Take a big data set and reorganize it into smaller data sets with a numeric rank off of a set of a values.  
+Uses: Breaking down ticket code by tickets, by individuals, etc.  
+	Creating funnels with raw web analytics data
+Allows to see what order work is coming in when there isn't a defined value for it
+
+*/
+
+Select 
+*
+,row_number()
+
+ OVER (Partition by group1 --ticket number 
+ , group2 --any identifiers between ticket number, queues, indiv commenters
+ORDER by number_by --puts it in the correct rank order
+) AS "parsed data"
+
